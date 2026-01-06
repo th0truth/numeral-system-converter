@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "ns.h"
 
 int extractNumberFormat(char *buffer, char *number, char *format)
@@ -38,11 +39,23 @@ int compare(char *s1, char *s2)
 }
 
 
-int checkBin(char *number)
+int ascii_to_integer(char *number)
+{
+  int n;
+  for (int i = 0; number[i] != '\0'; i++) {
+    if (number[i] > '9' || number[i] < '0') {
+      n = -1;
+    }
+    n = n * 10 + number[i] - '0';
+  }
+  return n;
+}
+
+int checkBin(const char *bin)
 {
   int i = 0;
-  while (number[i] != '\0') {
-    if (number[i] != '0' && number[i] != '1') {
+  while (bin[i] != '\0') {
+    if (bin[i] != '0' && bin[i] != '1') {
       return 0;
     }
     i++;
@@ -72,8 +85,7 @@ long binToOctal(const char *bin)
   long dec = binToDec(bin);
 
   // Decimal to octal
-  while (dec != 0)
-  {
+  while (dec != 0) {
     reminder = dec % 8;
     octal += reminder * base;
     base *= 10;
@@ -81,6 +93,23 @@ long binToOctal(const char *bin)
   }
 
   return octal;
+}
+
+
+long hexToDec(const char *hex)
+{
+  int decimal = 0, base = 1, i;
+  for(i = strlen(hex) - 1; i >= 0; i--) {
+    if(hex[i] >= '0' && hex[i] <= '9') {
+      decimal += (hex[i] - 48) * base;
+    } else if(hex[i] >= 'A' && hex[i] <= 'F') {
+      decimal += (hex[i] - 55) * base;
+    } else if(hex[i] >= 'a' && hex[i] <= 'f') {
+      decimal += (hex[i] - 87) * base;
+      base *= 16;
+    }
+  }
+  return decimal;
 }
 
 
@@ -103,7 +132,14 @@ int converter(char *res, char *number, char *format)
           fprintf(stderr, "Invalid converter format.\n");
           return 1;
         }
+        
+      } else if (number[1] == 'x') {
+        printf("num: %x\n", ascii_to_integer(number + 2));
+        if (compare(format, "dec") == 0) {
+          printf("%d", hexToDec(number + 2));
+        }
       }
+      break;
     } 
   }
   return 0;
