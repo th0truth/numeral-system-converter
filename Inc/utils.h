@@ -8,6 +8,8 @@
 #define FORMAT_SIZE 8
 
 int extractNumberFormat(const char* buffer, char* number, char* format);
+long ascii_to_integer(const char* number);
+
 int converter(char* res, const char* number, const char* format);
 
 #endif
