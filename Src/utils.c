@@ -56,7 +56,7 @@ int converter(char* res, const char* number, const char* format)
 {
   for (int i = 0; number[i] != '\0'; i++) {
     if (number[0] == '0') {
-      if (number[1] == 'b' && checkBin(number + 2) == 1) {
+      if ((number[1] == 'b' || number[1] == 'B') && checkBin(number + 2) == 1) {
         if (compare(format, "dec") == 0) {
           snprintf(res, BUFFER_SIZE, "%ld", binToDec(number + 2));
         } else if (compare(format, "oct") == 0) {
@@ -67,7 +67,7 @@ int converter(char* res, const char* number, const char* format)
           fprintf(stderr, "Please, enter a valid format: `dec`, `oct` or `hex`\n");
           return 1;
         }
-      } else if (number[1] == 'x') {
+      } else if (number[1] == 'x' || number[1] == 'X') {
         if (compare(format, "dec") == 0) {
           snprintf(res, BUFFER_SIZE, "%ld", hexToDec(number + 2));
         } else if (compare(format, "bin") == 0) {
