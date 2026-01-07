@@ -1,5 +1,6 @@
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 #include "utils.h"
@@ -146,3 +147,34 @@ long octToBin(const char* oct)
   }
   return binary;
 }
+
+
+char* decToBin(const char* dec)
+{
+  long decimal = ascii_to_integer(dec);
+  char* bin = malloc(65 * sizeof(char)); 
+  if (bin == NULL) {
+    return NULL;
+  }
+
+  int i = 0;
+  if (decimal == 0) {
+    bin[i++] = '0';
+  } else {
+    while (decimal > 0) {
+      bin[i++] = (decimal % 2) + '0';
+      decimal /= 2;
+    }
+  }
+   
+  bin[i] = '\0';
+
+  char temp;
+  for (int j = 0; j < i / 2; j++) {
+    temp = bin[j];
+    bin[j] = bin[i-j- 1];
+    bin[i-j-1] = temp;
+  }
+
+  return bin;
+} 

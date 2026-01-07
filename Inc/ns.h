@@ -14,4 +14,5 @@ long hexToOct(const char* hex);
 long octToDec(const char *oct);
 long octToBin(const char* oct);
 
+char* decToBin(const char* dec);  
 #endif

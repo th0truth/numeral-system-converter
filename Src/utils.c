@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -86,6 +87,12 @@ int converter(char* res, const char* number, const char* format)
       } else {
         return 1;
       }
+    }
+  } else {
+    if (compare(format, "bin") == 0) {
+      char* binary = decToBin(number);
+      snprintf(res, BUFFER_SIZE, "%s", binary);
+      free(binary);
     }
   }
   return 0;
