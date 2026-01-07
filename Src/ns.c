@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 
 #include "utils.h"
 #include "ns.h"
@@ -65,7 +66,7 @@ long hexToDec(const char* hex)
 }
 
 
-long hexToBin(const char *hex)
+long hexToBin(const char* hex)
 {
   long bin = 0ll;
   for (int i = 0; hex[i] != '\0'; i++) {
@@ -92,4 +93,31 @@ long hexToBin(const char *hex)
   }
 
   return bin;
+}
+
+
+long hexToOct(const char* hex)
+{
+  int reminder, value;
+  long bin = hexToBin(hex); 
+  long octal = 0ll;
+  for (int i = 1; bin > 0; i *= 10)
+  {
+    reminder = bin % 1000;
+    switch (reminder)
+    {
+      case 0: value = 0; break;
+      case 1: value = 1; break;
+      case 10: value = 2; break;
+      case 11: value = 3; break;
+      case 100: value = 4; break;
+      case 101: value = 5; break;
+      case 110: value = 6; break;
+      case 111: value = 7; break;
+    }
+    octal = (value * i) + octal;
+    bin /= 1000;
+  }
+  
+  return octal;
 }

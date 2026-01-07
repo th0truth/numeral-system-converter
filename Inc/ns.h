@@ -9,5 +9,6 @@ long binToOctal(const char* bin);
 
 long hexToBin(const char* hex);
 long hexToDec(const char* hex);
+long hexToOct(const char* hex);
 
 #endif
