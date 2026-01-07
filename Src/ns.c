@@ -25,7 +25,6 @@ long binToDec(const char* bin)
     dec = dec * 2 + (*bin - '0');
     bin++;
   }
-
   return dec;
 }
 
@@ -44,7 +43,6 @@ long binToOctal(const char* bin)
     base *= 10;
     dec /= 8;
   }
-
   return octal;
 }
 
@@ -91,7 +89,6 @@ long hexToBin(const char* hex)
       case 'f': case 'F': bin += 1111; break;
     }
   }
-
   return bin;
 }
 
@@ -118,6 +115,5 @@ long hexToOct(const char* hex)
     octal = (value * i) + octal;
     bin /= 1000;
   }
-  
   return octal;
 }
