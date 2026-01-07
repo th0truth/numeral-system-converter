@@ -75,8 +75,8 @@ int converter(char* res, const char* number, const char* format)
       } else if (number[1] == 'x') {
         if (compare(format, "dec") == 0) {
           snprintf(res, BUFFER_SIZE, "%d", hexToDec(number + 2));
-        } else if (compare(format, "octal") == 0) {
-          // snprintf(res, BUFFER_SIZE, "%d", )
+        } else if (compare(format, "bin") == 0) {
+          snprintf(res, BUFFER_SIZE, "%d", hexToBin(number + 2));
         }
       }
       break;

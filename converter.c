@@ -22,7 +22,7 @@ int main(void) {
   // Allocate memory for a result 
   char *res = malloc(BUFFER_SIZE * sizeof(char));
   if (res == NULL) {
-    fprintf(stderr, "Failed to allocate memory.");
+    fprintf(stderr, "Failed to allocate memory.\n");
     return 1;
   }
 
