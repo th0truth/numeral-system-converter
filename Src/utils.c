@@ -62,10 +62,7 @@ int converter(char* res, const char* number, const char* format)
           snprintf(res, BUFFER_SIZE, "%ld", binToOctal(number + 2));
         } else if (compare(format, "hex") == 0) {
           snprintf(res, BUFFER_SIZE, "%X", binToDec(number + 2));
-        } else {
-          fprintf(stderr, "Please, enter a valid format: `dec`, `oct` or `hex`\n");
-          return 1;
-        }
+        } else { return 1; }
       } else if (number[1] == 'x' || number[1] == 'X') {
         if (compare(format, "dec") == 0) {
           snprintf(res, BUFFER_SIZE, "%ld", hexToDec(number + 2));
@@ -73,14 +70,15 @@ int converter(char* res, const char* number, const char* format)
           snprintf(res, BUFFER_SIZE, "%ld", hexToBin(number + 2));
         } else if (compare(format, "oct") == 0) {
           snprintf(res, BUFFER_SIZE, "%ld", hexToOct(number + 2));
-        } else {
-          fprintf(stderr, "Please, enter a valid format: `dec`, `oct` or `hex`\n");
-          return 1;
-        }
+        } else { return 1; }
       } else {
         if (compare(format, "dec") == 0) {
           snprintf(res, BUFFER_SIZE, "%ld", octToDec(number + 1));
-        }
+        } else if (compare(format, "bin") == 0) {
+          snprintf(res, BUFFER_SIZE, "%ld", octToBin(number + 1));
+        } else if (compare(format, "hex") == 0) {
+          snprintf(res, BUFFER_SIZE, "%X", octToDec(number + 1));
+        } else { return 1; }
       }
       break;
     }

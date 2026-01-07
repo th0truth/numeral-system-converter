@@ -122,7 +122,7 @@ long hexToOct(const char* hex)
 }
 
 
-long octToDec(const char *oct)
+long octToDec(const char* oct)
 {
   long decimal = 0;
   long octal = ascii_to_integer(oct);
@@ -131,4 +131,18 @@ long octToDec(const char *oct)
     octal /= 10;
   }
   return decimal;
+}
+
+
+long octToBin(const char* oct)
+{
+  long binary = 0;
+  
+  // Convert octal to decimal, then decimal to binary 
+  long decimal = octToDec(oct);
+  for (int i = 1; decimal != 0; i *= 10) {
+    binary += ((decimal % 2) * i);
+    decimal /= 2;
+  }
+  return binary;
 }
