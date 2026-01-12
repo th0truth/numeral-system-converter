@@ -5,8 +5,7 @@
 #include "utils.h"
 #include "ns.h"
 
-int extractNumberFormat(const char* buffer, char* number, char* format)
-{
+int extractNumberFormat(const char* buffer, char* number, char* format) {
   int i = 0, space = 0;
   for (; buffer[i] != '\0'; i++) {
     if (buffer[i] != ' ') {
@@ -29,8 +28,7 @@ int extractNumberFormat(const char* buffer, char* number, char* format)
   return 0;
 }
 
-int compare(const char* s1, const char* s2)
-{
+int compare(const char* s1, const char* s2) {
   for (int i = 0; s1[i] != '\0' && s2[i] != '\0'; i++) {
     if (s1[i] != s2[i]) {
       return (s1[i] > s2[i]) ? 1 : 1;
@@ -38,8 +36,7 @@ int compare(const char* s1, const char* s2)
   }
 }
 
-int converter(char* res, const char* number, const char* format)
-{
+int converter(char* res, const char* number, const char* format) {
   ull decimal;
   if (number[0] == '0') {
     if (number[1] == 'b' || number[1] == 'B') {
