@@ -54,13 +54,29 @@ This will:
 Build/main.o
 ```
 
-# Running the Program
+# Usage
 
 After building, run the program with:
 
 ```bash
 ./Build/main.o
+
+[number] [format]
 ```
+
+- **number** – The input number. Its base is automatically detected using common prefixes.
+- **format** – The desired output format.
+
+### Supported Input Formats
+
+The base of the input number is determined as follows:
+
+| Prefix | Base        | Example  |
+| ------ | ----------- | -------- |
+| `0b`   | Binary      | `0b1010` |
+| `0x`   | Hexadecimal | `0x1F`   |
+| `0`    | Octal       | `075`    |
+| none   | Decimal     | `42`     |
 
 # Clean
 
