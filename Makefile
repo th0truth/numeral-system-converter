@@ -1,4 +1,4 @@
-TARGET=converter
+TARGET=main
 
 CC=gcc
 
